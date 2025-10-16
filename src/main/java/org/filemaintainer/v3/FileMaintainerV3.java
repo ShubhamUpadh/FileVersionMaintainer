@@ -4,6 +4,7 @@ import org.filemaintainer.v2.FileMaintainerV2;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 public class FileMaintainerV3 {
     private Map<String, FileMaintainerV2> docMaintainerMap = new HashMap<>();
@@ -53,5 +54,13 @@ public class FileMaintainerV3 {
 
     public void getListOfDocs(){
         System.out.println(String.join("," ,docMaintainerMap.keySet()));
+    }
+
+    public Set<String> getFileKeySet(){
+        return docMaintainerMap.keySet();
+    }
+
+    public FileMaintainerV2 getFileVersionForFileName(String fileName){
+        return docMaintainerMap.get(fileName);
     }
 }

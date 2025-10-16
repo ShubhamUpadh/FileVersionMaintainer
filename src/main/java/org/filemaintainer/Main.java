@@ -2,6 +2,7 @@ package org.filemaintainer;
 
 import org.filemaintainer.v2.FileMaintainerV2;
 import org.filemaintainer.v3.FileMaintainerV3;
+import org.filemaintainer.v3.FilePersisterReader;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
@@ -22,6 +23,8 @@ public class Main {
         f.getDataInVersion("Second",3);
         f.rollback("Second", 1);
         f.getListOfDocs();
+        FilePersisterReader fpr = new FilePersisterReader();
+        fpr.persistFile(f);
 
 //        FileMaintainerV2 f = new FileMaintainerV2();
 //        f.create("Hello");

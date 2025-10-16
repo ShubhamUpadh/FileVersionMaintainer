@@ -1,14 +1,18 @@
 package org.filemaintainer.v2;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import org.filemaintainer.v2.ChangeData;
 
 public class FileMaintainerV2 {
     private List<ChangeData> versionList;
+
+    public List<ChangeData> getVersionList() {
+        return versionList;
+    }
+
     private int head;
 
     public FileMaintainerV2() {
@@ -77,28 +81,6 @@ public class FileMaintainerV2 {
 
     public int getHead() {
         return head;
-    }
-}
-
-class ChangeData{
-    private String type;
-    private int versionNumber;
-    private String fileData;
-    private LocalDateTime time;
-
-    public ChangeData(String type, int versionNumber, String fileData) {
-        this.type = type; // should be made an enum later
-        this.versionNumber = versionNumber;
-        this.fileData = fileData;
-        this.time = LocalDateTime.now();
-    }
-
-    public String getFileData() {
-        return fileData;
-    }
-
-    public int getVersionNumber() {
-        return versionNumber;
     }
 }
 
