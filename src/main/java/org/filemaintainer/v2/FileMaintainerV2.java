@@ -31,7 +31,7 @@ public class FileMaintainerV2 {
             throw new RuntimeException("Please create the file -> use create method");
         }
         ChangeData updateFile = new ChangeData("update", head + 1, data);
-        System.out.println((head < versionList.size()-1));
+//        System.out.println((head < versionList.size()-1));
         if (head < versionList.size()-1){
             versionList.set(head + 1, updateFile);
         }
@@ -69,6 +69,14 @@ public class FileMaintainerV2 {
 
     public Map<Integer, String> getDataWithVersion(){
         return versionList.stream().limit(head+1).collect(Collectors.toMap(ChangeData::getVersionNumber, ChangeData::getFileData));
+    }
+
+    public void setHead(int head) {
+        this.head = head;
+    }
+
+    public int getHead() {
+        return head;
     }
 }
 
