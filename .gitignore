@@ -40,3 +40,7 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+
+### Output Files ###
+file_version_history.csv
+filenames_version_table.csv
