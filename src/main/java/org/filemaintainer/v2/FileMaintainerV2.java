@@ -1,10 +1,13 @@
 package org.filemaintainer.v2;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.nio.charset.StandardCharsets;
+import java.util.*;
 import java.util.stream.Collectors;
-import org.filemaintainer.v2.ChangeData;
+
+import com.github.difflib.UnifiedDiffUtils;
+import com.github.difflib.DiffUtils;
+import com.github.difflib.patch.Patch;
+
 
 public class FileMaintainerV2 {
     private List<ChangeData> versionList;
@@ -24,19 +27,24 @@ public class FileMaintainerV2 {
         if (!versionList.isEmpty()){
             throw new RuntimeException("File already exists");
         }
-        ChangeData newFile = new ChangeData( "create", 0, data);
+        ChangeData newFile = new ChangeData( "create", 0, "+" + data);
         versionList.add(newFile);
         head = 0;
         System.out.println(getDataWithVersion());
     }
 
     public void update(String data){
+//        diff
         if (versionList.isEmpty()){
             throw new RuntimeException("Please create the file -> use create method");
         }
-        ChangeData updateFile = new ChangeData("update", head + 1, data);
+        String prevVersionData = getVersion(head);
+        String diffString = getDiffString(prevVersionData, data); //use diff-match-patch here
+        String encodedString = Base64.getEncoder().encodeToString(diffString.getBytes(StandardCharsets.UTF_8));
+        ChangeData updateFile = new ChangeData("update", head + 1, encodedString);
 //        System.out.println((head < versionList.size()-1));
         if (head < versionList.size()-1){
+            // This will be the case when the file has been rolled back
             versionList.set(head + 1, updateFile);
         }
         else {
@@ -81,6 +89,15 @@ public class FileMaintainerV2 {
 
     public int getHead() {
         return head;
+    }
+
+    private String getDiffString(String a, String b){
+        List<String> original = List.of(a);
+        List<String> revised = List.of(b);
+        Patch<String> patch = DiffUtils.diff(original, revised);
+        List<String> unifiedDiff = UnifiedDiffUtils.generateUnifiedDiff("original", "revised", original, patch, 0);
+        return String.join("\n", unifiedDiff);
+
     }
 }
 

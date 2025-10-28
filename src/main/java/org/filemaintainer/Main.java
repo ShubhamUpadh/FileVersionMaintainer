@@ -1,6 +1,5 @@
 package org.filemaintainer;
 
-import org.filemaintainer.v2.FileMaintainerV2;
 import org.filemaintainer.v3.FileMaintainerV3;
 import org.filemaintainer.v3.FilePersisterReader;
 
@@ -13,16 +12,16 @@ public class Main {
 
         FileMaintainerV3 f = new FileMaintainerV3();
         f.initiateFile("First");
-        f.writeDataToFile("First","Hello");
+        f.writeDataToFile("First","Hello1");
         f.writeDataToFile("Second", "Hello2");
         f.initiateFile("Second");
         f.writeDataToFile("Second", "Hello2");
         f.writeDataToFile("Second", "Hello3");
         f.writeDataToFile("Second", "Hello4");
         f.writeDataToFile("Second", "Hello5");
-        f.getDataInVersion("Second",3);
-        f.rollback("Second", 1);
-        f.getListOfDocs();
+//        f.getDataInVersion("Second",3);
+//        f.rollback("Second", 1);
+//        f.getListOfDocs();
         FilePersisterReader fpr = new FilePersisterReader();
         fpr.persistFile(f);
 

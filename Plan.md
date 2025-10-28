@@ -23,21 +23,21 @@ The system can be extended to different difficulty levels, depending on the feat
 ---
 
 ### **Easy**
-- Adds rollback functionality to revert to a previous version.
+- Adds rollback functionality to revert to a previous version. [x]
 - Maintains version metadata:
-  - Timestamps
-  - Operation type (`create`, `update`, etc.)
-- Handles invalid version accesses gracefully.
-- Optional: delete versions or rename the document.
+  - Timestamps [x]
+  - Operation type (`create`, `update`, etc.) [x]
+- Handles invalid version accesses gracefully. [x]
+- Optional: delete versions or rename the document. 
 
 ---
 
 ### **Moderate**
-- Supports multiple documents within the system.
-- Persistent storage (file-based or database).
-- Differential storage: store only changes (deltas) instead of full copies.
-- Ability to compare versions (diff) and search document history.
-- Track changes per user if multi-user support is needed.
+- Supports multiple documents within the system. [x]
+- Persistent storage (file-based or database). [x]
+- Differential storage: store only changes (deltas) instead of full copies. []
+- Ability to compare versions (diff) and search document history. []
+- Track changes per user if multi-user support is needed. []
 
 ---
 

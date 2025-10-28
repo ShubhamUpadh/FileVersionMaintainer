@@ -19,6 +19,7 @@ public class FileMaintainerV3 {
             return;
         }
         if (docMaintainerMap.get(fileName).getHead() == -1){
+            // This condition will be invoked only when file is empty and it has only been initiated and no data has been written yet
             docMaintainerMap.get(fileName).create(data);
             return;
         }
